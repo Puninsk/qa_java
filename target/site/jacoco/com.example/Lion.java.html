@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Lion.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">untitled</a> &gt; <a href="index.source.html" class="el_package">com.example</a> &gt; <span class="el_source">Lion.java</span></div><h1>Lion.java</h1><pre class="source lang-java linenums">package com.example;
+
+import java.util.List;
+
+public class Lion extends Feline {
+
+    boolean hasMane;
+    private AnimalFamily animalFamily;
+    private AnimalFood animalFood;
+
+<span class="fc" id="L11">    public Lion(AnimalFamily animalFamily) {</span>
+<span class="fc" id="L12">        this.animalFamily = animalFamily;</span>
+<span class="fc" id="L13">    }</span>
+
+<span class="fc" id="L15">    public Lion(AnimalFood animalFood) {</span>
+<span class="fc" id="L16">        this.animalFood = animalFood;</span>
+<span class="fc" id="L17">    }</span>
+
+<span class="fc" id="L19">    public Lion(String sex) throws InterruptedException {</span>
+<span class="fc bfc" id="L20" title="All 2 branches covered.">        if (&quot;Самец&quot;.equals(sex)) {</span>
+<span class="fc" id="L21">            hasMane = true;</span>
+<span class="fc bfc" id="L22" title="All 2 branches covered.">        } else if (&quot;Самка&quot;.equals(sex)) {</span>
+<span class="fc" id="L23">            hasMane = false;</span>
+        } else {
+<span class="fc" id="L25">            throw new InterruptedException(&quot;Используйте допустимые значения пола животного - самец или самка&quot;);</span>
+        }
+<span class="fc" id="L27">    }</span>
+
+    public int getKittensNumber() {
+<span class="fc" id="L30">            return animalFamily.getKittens();</span>
+    }
+
+    public int getKittensNumber(int kittensNumber) {
+<span class="fc" id="L34">        return animalFamily.getKittens(kittensNumber);</span>
+    }
+    public boolean doesHaveMane() {
+<span class="fc" id="L37">        return hasMane;</span>
+    }
+
+    public List&lt;String&gt; getFood() throws Exception {
+<span class="fc" id="L41">        return animalFood.getFood();</span>
+    }
+
+    public String getFamily() {
+<span class="fc" id="L45">        return animalFamily.getFamily();</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
