@@ -2,21 +2,14 @@ package com.example;
 
 import java.util.List;
 
-public class Lion extends Feline {
-
+public class Lion {
     boolean hasMane;
-    private AnimalFamily animalFamily;
-    private AnimalFood animalFood;
+    String sex;
+    Feline feline;
 
-    public Lion(AnimalFamily animalFamily) {
-        this.animalFamily = animalFamily;
-    }
-
-    public Lion(AnimalFood animalFood) {
-        this.animalFood = animalFood;
-    }
-
-    public Lion(String sex) throws InterruptedException {
+    public Lion(String sex, Feline feline) throws InterruptedException {
+        this.sex = sex;
+        this.feline = feline;
         if ("Самец".equals(sex)) {
             hasMane = true;
         } else if ("Самка".equals(sex)) {
@@ -25,24 +18,21 @@ public class Lion extends Feline {
             throw new InterruptedException("Используйте допустимые значения пола животного - самец или самка");
         }
     }
-
     public int getKittensNumber() {
-            return animalFamily.getKittens();
+            return feline.getKittens();
     }
 
     public int getKittensNumber(int kittensNumber) {
-        return animalFamily.getKittens(kittensNumber);
+        return feline.getKittens(kittensNumber);
     }
     public boolean doesHaveMane() {
         return hasMane;
     }
 
     public List<String> getFood() throws Exception {
-        return animalFood.getFood();
+        return feline.getFood();
     }
-
     public String getFamily() {
-        return animalFamily.getFamily();
+        return feline.getFamily();
     }
-
 }

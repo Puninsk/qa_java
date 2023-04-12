@@ -1,20 +1,22 @@
 import com.example.*;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.Mock;
+
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
 public class TestLion {
-    private final String animalSex;
+    private final String sex;
+    static Feline feline;
 
-    public TestLion(String animalSex) {
-        this.animalSex = animalSex;
+    public TestLion(String sex) {
+        this.sex = sex;
     }
 
     @Parameterized.Parameters
@@ -25,6 +27,11 @@ public class TestLion {
         };
     }
 
+    @BeforeClass
+    public static void createFelineObjectForTest() {
+        feline = new Feline();
+    }
+
     @Before
     public void init() {
         MockitoAnnotations.initMocks(this);
@@ -32,21 +39,26 @@ public class TestLion {
 
     @Test
     public void testLionForDifferentSexes() throws InterruptedException {
-        Lion lion = new Lion(animalSex);
-        System.out.println(lion.doesHaveMane());
+        Lion lion = new Lion(sex, feline);
+     boolean expectedResult;
+     if (sex == "Самец") {
+           expectedResult = true;
+      }
+     else  {
+          expectedResult = false;
+     }
+       boolean actualResult = lion.doesHaveMane();
+       assertEquals(expectedResult, actualResult);
     }
 
     @Test(expected = InterruptedException.class)
     public void testLionForSexNegative() throws InterruptedException {
-        Lion lion = new Lion("Неизвестно");
-        System.out.println(lion.doesHaveMane());
+        Lion lion = new Lion("Неизвестно", feline);
     }
-    @Mock
-    AnimalFamily feline;
+
     @Test
-    public void testLionFamily() {
-        Lion lion = new Lion(feline);
-        Mockito.when(feline.getFamily()).thenReturn("Кошачьи");
+    public void testLionFamily() throws InterruptedException {
+        Lion lion = new Lion(sex, feline);
         String expectedResult = "Кошачьи";
         String actualResult = lion.getFamily();
         assertEquals(expectedResult, actualResult);
@@ -54,27 +66,27 @@ public class TestLion {
 
 
     @Test
-    public void testgetKittensNumberDefault() {
-        AnimalFamily feline = new Feline();
-        Lion lion = new Lion(feline);
-        System.out.println(lion.getKittensNumber());
+    public void testgetKittensNumberDefault() throws InterruptedException {
+        Lion lion = new Lion(sex, feline);
+        int expectedResult = 1;
+        int actualResult = lion.getKittensNumber();
+        assertEquals(expectedResult, actualResult);
     }
 
     @Test
-    public void testgetKittensNumberTwo() {
-        AnimalFamily feline = new Feline();
-        Lion lion = new Lion(feline);
+    public void testgetKittensNumberTwo() throws InterruptedException {
+        Lion lion = new Lion(sex, feline);
         int expectedKittensNumber = 2;
         int actualKittensNumber = lion.getKittensNumber(2);
-        System.out.println(lion.getKittensNumber(2));
         assertEquals(expectedKittensNumber, actualKittensNumber);
     }
 
     @Test
     public void testLionFood() throws Exception {
-        AnimalFood feline = new Feline();
-        Lion lion = new Lion(feline);
-        System.out.println(lion.getFood());
+        Lion lion = new Lion(sex, feline);
+        List<String> expectedResult = List.of("Животные", "Птицы", "Рыба");
+        List<String> actualResult = lion.getFood();
+        assertEquals(expectedResult, actualResult);
     }
 
 }

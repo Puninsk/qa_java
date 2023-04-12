@@ -2,23 +2,23 @@
 
 import java.util.List;
 
-<span class="fc" id="L5">public class Feline extends Animal implements Predator, AnimalFamily, AnimalFood {</span>
+<span class="fc" id="L5">public class Feline extends Animal implements Predator {</span>
 
     @Override
     public List&lt;String&gt; eatMeat() throws Exception {
 <span class="fc" id="L9">        return getFood(&quot;Хищник&quot;);</span>
     }
-    @Override
-    public List&lt;String&gt; getFood() throws Exception {
-<span class="fc" id="L13">        return eatMeat();</span>
-    }
 
-    @Override
+    public List&lt;String&gt; getFood() throws Exception {
+<span class="fc" id="L13">    return eatMeat();</span>
+ }
+
+
     public String getFamily() {
 <span class="fc" id="L18">        return &quot;Кошачьи&quot;;</span>
     }
 
-    @Override
+
     public int getKittens() {
 <span class="fc" id="L23">        return getKittens(1);</span>
     }
